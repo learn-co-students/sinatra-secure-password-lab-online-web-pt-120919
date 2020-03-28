@@ -1,5 +1,12 @@
-<h1>Welcome</h1>
-
+<% if logged_in? %>
+<h1>Welcome <%= current_user.username %></h1>
 <p>We are currently working on your account.</p>
-
+<p>Account Balance: <%= current_user.balance %></p>
+<form action="/account/<%= current_user.id %>/update_balance" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <p>Deposit: <input type="number" name="deposit"></p>
+  <p>Withdrawl: <input type="number" name="withdrawl"></p>
+  <input type="submit" value="submit">
+</form>
+<% end %>
 <p><a href="/logout">Log Out</a></p>
